@@ -28,6 +28,5 @@ class LoginActivity : AppCompatActivity() {
 
         loginViewModel = ViewModelProvider(this, LoginViewModelFactory())
             .get(LoginViewModel::class.java)
-
     }
 }
