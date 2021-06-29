@@ -19,8 +19,8 @@ class LoginActivity : AppCompatActivity() {
 
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        setSupportActionBar(binding.toolbar)
+/*
+       // setSupportActionBar(binding.toolbar)
 
         val navController = findNavController(R.id.nav_host_fragment_content_login)
         appBarConfiguration = AppBarConfiguration(navController.graph)
@@ -36,5 +36,6 @@ class LoginActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_content_login)
         return navController.navigateUp(appBarConfiguration)
                 || super.onSupportNavigateUp()
+    }*/
     }
 }
