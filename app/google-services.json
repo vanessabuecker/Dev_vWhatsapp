@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "724979550290",
+    "project_id": "devventure-whats",
+    "storage_bucket": "devventure-whats.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:724979550290:android:c480b090791065868bb78b",
+        "android_client_info": {
+          "package_name": "com.vbuecker.dev_venture_whatsapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "724979550290-tdleh58b0kchvs614umjkum21fu44ppl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBDhEv6jK6CSQf7Wy-cqtmOQK3-qkPmZhk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "724979550290-tdleh58b0kchvs614umjkum21fu44ppl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
