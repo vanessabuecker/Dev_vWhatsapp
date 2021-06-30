@@ -8,7 +8,7 @@ import android.os.Looper
 import com.google.firebase.auth.FirebaseAuth
 import com.vbuecker.dev_venture_whatsapp.MainActivity
 import com.vbuecker.dev_venture_whatsapp.R
-import com.vbuecker.dev_venture_whatsapp.ui.login.LoginActivity
+import com.vbuecker.dev_venture_whatsapp.LoginActivity
 
 class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
