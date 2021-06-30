@@ -1,4 +1,4 @@
-package com.vbuecker.dev_venture_whatsapp
+package com.vbuecker.dev_venture_whatsapp.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import com.vbuecker.dev_venture_whatsapp.R
 import com.vbuecker.dev_venture_whatsapp.databinding.FragmentSecondBinding
 
 /**

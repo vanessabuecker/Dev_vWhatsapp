@@ -14,8 +14,9 @@
     <string name="menu_slideshow">Slideshow</string>
     <string name="chat">CONVERSAS</string>
     <string name="welcome">Welcome to Whatsapp</string>
-    <string name="agree_terms_policy"><![CDATA[Ao clicar em Avançar, você concorda com nossos <b>Termos, Política de Dados e Política de Cookies.]]></string>
+    <string name="agree_terms_policy">Ao clicar em Avançar, você concorda com nossos <b>Termos, Política de Dados e Política de Cookies.</b></string>
     <string name="title_activity_login">LoginActivity</string>
+
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
@@ -24,4 +25,11 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="chats">CONVERSAS</string>
+    <string name="calls">CHAMADAS</string>
+    <string name="status">STATUS</string>
+    <string name="enter">Login</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -27,7 +27,7 @@ class LoginActivity : AppCompatActivity() {
 
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val login = binding.loginButton
+        val login = binding.buttonLogin
 
         login.setOnClickListener {
             startActivityForResult(
