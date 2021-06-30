@@ -12,6 +12,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import com.firebase.ui.auth.AuthUI
 import com.vbuecker.dev_venture_whatsapp.MainActivity
 import com.vbuecker.dev_venture_whatsapp.databinding.ActivityLoginBinding
+import com.vbuecker.dev_venture_whatsapp.fragments.UserFragment
 
 const val RC_SIGN_IN = 123
 class LoginActivity : AppCompatActivity() {

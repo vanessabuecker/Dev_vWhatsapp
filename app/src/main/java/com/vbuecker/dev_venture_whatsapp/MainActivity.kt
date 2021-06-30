@@ -19,8 +19,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
 
-        supportActionBar?.title = "Whatsapp - Group 1"
-        actionBar?.setDisplayHomeAsUpEnabled(true)
+        title = "Whatsapp - Group 1"
 
         pager.adapter = ViewPagerAdapter(this)
 
@@ -34,10 +33,6 @@ class MainActivity : AppCompatActivity() {
                     2 -> tab.text = "CHAMADAS"
                 }
             }).attach()
-    }
 
-    override fun onSupportNavigateUp(): Boolean {
-        onBackPressed()
-        return true
     }
 }
