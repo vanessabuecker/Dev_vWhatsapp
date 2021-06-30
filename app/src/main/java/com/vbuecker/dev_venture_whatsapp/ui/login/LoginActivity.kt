@@ -10,10 +10,12 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.vbuecker.dev_venture_whatsapp.databinding.ActivityLoginBinding
 
+const val RC_SIGN_IN = 123
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
     private lateinit var loginViewModel: LoginViewModel
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,9 +26,14 @@ class LoginActivity : AppCompatActivity() {
         val username = binding.loginEmail
         val password = binding.loginPassword
         val login = binding.loginButton
-        val loginGoogle = binding.loginGoogle
 
         loginViewModel = ViewModelProvider(this, LoginViewModelFactory())
             .get(LoginViewModel::class.java)
+
+        login.setOnClickListener {
+            startActivityForResult(
+                loginViewModel.login(), RC_SIGN_IN
+            )
+        }
     }
 }
