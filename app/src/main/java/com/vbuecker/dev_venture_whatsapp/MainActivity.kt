@@ -25,11 +25,11 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.action_logout) {
-            AuthUI.getInstance().signOut(this).addOnCompleteListener {
-                val intent = Intent(this, LoginActivity::class.java)
-                startActivity(intent)
-                finish()
-            }
+//            AuthUI.getInstance().signOut(this).addOnCompleteListener {
+//                val intent = Intent(this, LoginActivity::class.java)
+//                startActivity(intent)
+//                finish()
+//            }
             return true
         }
 
