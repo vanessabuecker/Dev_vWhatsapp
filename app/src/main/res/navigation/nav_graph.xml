@@ -3,10 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/av_graph"
-    app:startDestination="@id/mainFragment">
+    app:startDestination="@id/loginFragment">
     <fragment
         android:id="@+id/mainFragment"
         tools:layout="@layout/fragment_main"
         android:name="com.vbuecker.dev_venture_whatsapp.ui.main.MainFragment"
         android:label="MainFragment" />
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.vbuecker.dev_venture_whatsapp.ui.login.LoginFragment"
+        android:label="LoginFragment" />
 </navigation>
