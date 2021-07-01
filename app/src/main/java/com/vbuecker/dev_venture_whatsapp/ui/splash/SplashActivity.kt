@@ -8,7 +8,6 @@ import android.os.Looper
 import com.google.firebase.auth.FirebaseAuth
 import com.vbuecker.dev_venture_whatsapp.MainActivity
 import com.vbuecker.dev_venture_whatsapp.R
-import com.vbuecker.dev_venture_whatsapp.LoginActivity
 
 class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,15 +16,15 @@ class SplashActivity : AppCompatActivity() {
 
         val user = FirebaseAuth.getInstance().currentUser
 
-        Handler(Looper.getMainLooper()).postDelayed({
-            val intent: Intent = if(user == null) {
-                Intent(this, LoginActivity::class.java)
-            } else {
-                Intent(this, MainActivity::class.java)
-            }
-            startActivity(intent)
-            finish()
-        }, 1000)
+//        Handler(Looper.getMainLooper()).postDelayed({
+//            val intent: Intent = if(user == null) {
+//                Intent(this, LoginActivity::class.java)
+//            } else {
+//                Intent(this, MainActivity::class.java)
+//            }
+//            startActivity(intent)
+//            finish()
+//        }, 1000)
     }
 
 
