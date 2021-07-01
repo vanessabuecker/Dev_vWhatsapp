@@ -40,12 +40,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.main, menu)
+        menuInflater.inflate(R.menu.menu_logout, menu)
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(item.itemId == R.id.action_logout) {
+        if (item.itemId == R.id.action_logout) {
             AuthUI.getInstance().signOut(this).addOnCompleteListener {
                 val intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)
@@ -53,9 +53,7 @@ class MainActivity : AppCompatActivity() {
             }
             return true
         }
+
         return super.onOptionsItemSelected(item)
     }
-
-
-
 }

@@ -53,11 +53,11 @@ class LoginActivity : AppCompatActivity() {
             .build()
     }
 
-    fun onFail(message: String) {
+    private fun onFail(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
 
-    fun onSuccess() {
+    private fun onSuccess() {
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
         finish()
