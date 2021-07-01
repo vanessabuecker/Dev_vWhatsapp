@@ -7,11 +7,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import com.firebase.ui.auth.AuthUI
-import com.google.firebase.auth.FirebaseAuth
-import com.vbuecker.dev_venture_whatsapp.data.model.User
-import com.vbuecker.dev_venture_whatsapp.data.repository.UserRepository
+import com.vbuecker.dev_venture_whatsapp.R
 import com.vbuecker.dev_venture_whatsapp.databinding.FragmentLoginBinding
 
 const val RC_SIGN_IN = 123
@@ -21,68 +22,61 @@ class LoginFragment : Fragment() {
     private val binding
         get() = _binding!!
 
-    private val providers = arrayListOf(
-        AuthUI.IdpConfig.EmailBuilder().build(),
-        AuthUI.IdpConfig.GoogleBuilder().build()
-    )
-
+    private val viewModel: LoginViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
+        checkIfIsAuthenticated()
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initComponents()
+        binding.buttonLogin.setOnClickListener { launchSignIn() }
     }
 
-    private fun initComponents() {
-        val login = binding.buttonLogin
+    private fun checkIfIsAuthenticated() {
+        viewModel.checkIfAuthenticated()
+        viewModel.isUserAuthenticatedLiveData?.observe(viewLifecycleOwner, Observer {
+            if (it) {
+                onSuccess("Logado")
+            } else
+                onFail("Não foi possível adicionar o usuário")
+        })
+    }
 
-        login.setOnClickListener {
-            startActivityForResult(
-                login(), RC_SIGN_IN
-            )
-        }
+    private fun launchSignIn() {
+        val providers = arrayListOf(
+            AuthUI.IdpConfig.EmailBuilder().build(),
+            AuthUI.IdpConfig.GoogleBuilder().build()
+        )
+
+        startActivityForResult(
+            AuthUI.getInstance().createSignInIntentBuilder().setAvailableProviders(
+                providers
+            ).build(), RC_SIGN_IN
+        )
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-
-        if (requestCode == RC_SIGN_IN) {
+        if (requestCode == RC_SIGN_IN)
             if (resultCode == Activity.RESULT_OK) {
-                val current = FirebaseAuth.getInstance().currentUser?.apply {
-                    val user: User =
-                        User(this.displayName ?: "No name", this.email ?: "No email", this.uid)
-                    UserRepository.addUser(
-                        user,
-                        { onSuccess() }) { onFail("Não foi possível adicionar o usuário") }
-                }
-            } else {
-                onFail("Falhou")
+                viewModel.saveUser()
+                onSuccess("Logado")
             }
-        }
-    }
-
-    private fun login(): Intent {
-        return AuthUI.getInstance()
-            .createSignInIntentBuilder()
-            .setAvailableProviders(providers)
-            .build()
     }
 
     private fun onFail(message: String) {
         Toast.makeText(context, message, Toast.LENGTH_LONG).show()
     }
 
-    private fun onSuccess() {
-        Toast.makeText(context, "Sucesso", Toast.LENGTH_LONG).show()
-//        val intent = Intent(this, MainActivity::class.java)
-//        startActivity(intent)
+    private fun onSuccess(message: String) {
+        Toast.makeText(context, message, Toast.LENGTH_LONG).show()
+        findNavController().navigate(R.id.action_loginFragment_to_mainFragment)
     }
 }
