@@ -1,19 +1,18 @@
 package com.vbuecker.dev_venture_whatsapp
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
 import com.firebase.ui.auth.AuthUI
+import com.google.firebase.auth.FirebaseAuth
+import com.vbuecker.dev_venture_whatsapp.data.repository.UserRepository
 import com.vbuecker.dev_venture_whatsapp.databinding.ActivityLoginBinding
-import com.vbuecker.dev_venture_whatsapp.ui.login.RC_SIGN_IN
+import com.vbuecker.dev_venture_whatsapp.data.model.User
 
+const val RC_SIGN_IN = 123
 class LoginActivity : AppCompatActivity() {
-
     private lateinit var binding: ActivityLoginBinding
     private val providers = arrayListOf(
         AuthUI.IdpConfig.EmailBuilder().build(),
@@ -36,8 +35,14 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == RC_SIGN_IN) {
-            startActivity(Intent(this, MainActivity::class.java))
+
+        if(resultCode == Activity.RESULT_OK) {
+            val current = FirebaseAuth.getInstance().currentUser?.apply {
+                val user: User = User(this.displayName ?: "No name", this.email ?: "No email", this.uid)
+                UserRepository.addUser(user, {onSuccess()}) { onFail("Não foi possível adicionar o usuário") }
+            }
+        } else {
+            onFail("Falhou")
         }
     }
 
@@ -46,5 +51,15 @@ class LoginActivity : AppCompatActivity() {
             .createSignInIntentBuilder()
             .setAvailableProviders(providers)
             .build()
+    }
+
+    fun onFail(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+    }
+
+    fun onSuccess() {
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 }
