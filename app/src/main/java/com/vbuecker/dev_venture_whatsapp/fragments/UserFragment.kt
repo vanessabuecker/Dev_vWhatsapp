@@ -14,11 +14,12 @@ import com.firebase.ui.firestore.paging.LoadingState
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.vbuecker.dev_venture_whatsapp.R
+import com.vbuecker.dev_venture_whatsapp.User
 import kotlinx.android.synthetic.main.fragment_user.*
 
 class UserFragment : Fragment() {
 
-    lateinit var adapter : FirestorePagingAdapter<com.vbuecker.dev_venture_whatsapp.User, RecyclerView.ViewHolder>
+    lateinit var adapter : FirestorePagingAdapter<User, RecyclerView.ViewHolder>
 
     private val dataBase by lazy {
         FirebaseFirestore.getInstance().collection("users")
@@ -40,12 +41,12 @@ class UserFragment : Fragment() {
             .setPageSize(10)
             .build()
 
-        val options = FirestorePagingOptions.Builder<com.vbuecker.dev_venture_whatsapp.User>()
+        val options = FirestorePagingOptions.Builder<User>()
             .setLifecycleOwner(this)
-            .setQuery(dataBase, config, com.vbuecker.dev_venture_whatsapp.User::class.java)
+            .setQuery(dataBase, config, User::class.java)
             .build()
 
-        adapter = object : FirestorePagingAdapter<com.vbuecker.dev_venture_whatsapp.User, RecyclerView.ViewHolder>(options) {
+        adapter = object : FirestorePagingAdapter<User, RecyclerView.ViewHolder>(options) {
             override fun onCreateViewHolder(
                 parent: ViewGroup,
                 viewType: Int
@@ -58,7 +59,7 @@ class UserFragment : Fragment() {
             override fun onBindViewHolder(
                 holder: RecyclerView.ViewHolder,
                 position: Int,
-                model: com.vbuecker.dev_venture_whatsapp.User
+                model: User
             ) {
                 (holder as UserViewHolder).bind(model)
             }
