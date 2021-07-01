@@ -10,11 +10,11 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.firebase.ui.auth.AuthUI
 import com.google.firebase.auth.FirebaseAuth
-import com.vbuecker.dev_venture_whatsapp.MainActivity
-import com.vbuecker.dev_venture_whatsapp.RC_SIGN_IN
 import com.vbuecker.dev_venture_whatsapp.data.model.User
 import com.vbuecker.dev_venture_whatsapp.data.repository.UserRepository
 import com.vbuecker.dev_venture_whatsapp.databinding.FragmentLoginBinding
+
+const val RC_SIGN_IN = 123
 
 class LoginFragment : Fragment() {
     private var _binding: FragmentLoginBinding? = null
@@ -54,16 +54,18 @@ class LoginFragment : Fragment() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if (resultCode == Activity.RESULT_OK) {
-            val current = FirebaseAuth.getInstance().currentUser?.apply {
-                val user: User =
-                    User(this.displayName ?: "No name", this.email ?: "No email", this.uid)
-                UserRepository.addUser(
-                    user,
-                    { onSuccess() }) { onFail("Não foi possível adicionar o usuário") }
+        if (requestCode == RC_SIGN_IN) {
+            if (resultCode == Activity.RESULT_OK) {
+                val current = FirebaseAuth.getInstance().currentUser?.apply {
+                    val user: User =
+                        User(this.displayName ?: "No name", this.email ?: "No email", this.uid)
+                    UserRepository.addUser(
+                        user,
+                        { onSuccess() }) { onFail("Não foi possível adicionar o usuário") }
+                }
+            } else {
+                onFail("Falhou")
             }
-        } else {
-            onFail("Falhou")
         }
     }
 
