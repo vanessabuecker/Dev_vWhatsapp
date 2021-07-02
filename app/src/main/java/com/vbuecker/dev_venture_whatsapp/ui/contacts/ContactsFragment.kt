@@ -1,14 +1,19 @@
 package com.vbuecker.dev_venture_whatsapp.ui.contacts
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import com.vbuecker.dev_venture_whatsapp.data.model.Contact
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupWithNavController
+import com.vbuecker.dev_venture_whatsapp.R
 import com.vbuecker.dev_venture_whatsapp.databinding.FragmentContactsBinding
+import kotlinx.android.synthetic.main.activity_main.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ContactsFragment : Fragment() {
 
@@ -23,6 +28,7 @@ class ContactsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
         _binding = FragmentContactsBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -44,5 +50,5 @@ class ContactsFragment : Fragment() {
             mAdapter.setDataset(contactList)
         })
     }
-
 }
+

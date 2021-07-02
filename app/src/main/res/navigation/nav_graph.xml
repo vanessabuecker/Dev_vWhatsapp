@@ -7,7 +7,7 @@
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.vbuecker.dev_venture_whatsapp.ui.main.MainFragment"
-        android:label="MainFragment"
+        android:label="Messenger "
         tools:layout="@layout/fragment_main">
         <action
             android:id="@+id/action_mainFragment_to_contactsFragment"
@@ -21,7 +21,7 @@
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.vbuecker.dev_venture_whatsapp.ui.login.LoginFragment"
-        android:label="LoginFragment">
+        android:label=" ">
         <action
             android:id="@+id/action_loginFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
@@ -29,7 +29,7 @@
     <fragment
         android:id="@+id/contactsFragment"
         android:name="com.vbuecker.dev_venture_whatsapp.ui.contacts.ContactsFragment"
-        android:label="fragment_contact_list"
+        android:label="Group 1"
         tools:layout="@layout/fragment_contacts" />
 
 </navigation>

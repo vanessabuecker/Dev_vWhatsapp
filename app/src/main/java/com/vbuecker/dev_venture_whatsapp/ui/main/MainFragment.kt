@@ -47,11 +47,11 @@ class MainFragment : Fragment() {
                 findNavController().navigate(R.id.action_mainFragment_to_loginFragment)
             }
         }
-            return NavigationUI.onNavDestinationSelected(
-                item,
-                findNavController()
-            )
-                    || super.onOptionsItemSelected(item)
+        return NavigationUI.onNavDestinationSelected(
+            item,
+            findNavController()
+        )
+                || super.onOptionsItemSelected(item)
     }
 
     private fun initViewPager() {

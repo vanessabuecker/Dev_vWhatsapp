@@ -43,7 +43,7 @@
                 android:lines="1"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                tools:text="Vanessa B."/>
+                tools:text="Fulano de Tal"/>
 
             <TextView
                 android:id="@+id/timeTv"
@@ -54,7 +54,7 @@
                 android:textColor="@color/p_dark"
                 android:textSize="14sp"
                 android:visibility="visible"
-                tools:text="30/06/21?"/>
+                tools:text="30/06/21"/>
         </LinearLayout>
 
         <LinearLayout
@@ -84,11 +84,7 @@
                 android:paddingBottom="2dp"
                 android:paddingTop="2dp"/>
 
-
-
         </LinearLayout>
     </LinearLayout>
-
-
 
     </LinearLayout>
