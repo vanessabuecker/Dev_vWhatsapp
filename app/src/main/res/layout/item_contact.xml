@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingStart="16dp"
+    android:paddingTop="16dp"
+    android:paddingEnd="16dp">
+
+    <ImageView
+        android:id="@+id/contact_image"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/contact_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="@string/contact_name"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/contact_image"
+        app:layout_constraintTop_toTopOf="@id/contact_image" />
+
+    <TextView
+        android:id="@+id/contact_detail"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/contact_details"
+        app:layout_constraintBottom_toBottomOf="@+id/contact_image"
+        app:layout_constraintEnd_toEndOf="@+id/contact_name"
+        app:layout_constraintStart_toStartOf="@+id/contact_name" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="16dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintEnd_toEndOf="@+id/contact_detail"
+        app:layout_constraintStart_toStartOf="@+id/contact_detail"
+        app:layout_constraintTop_toBottomOf="@+id/contact_detail" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
