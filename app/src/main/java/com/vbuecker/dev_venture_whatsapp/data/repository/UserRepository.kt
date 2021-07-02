@@ -39,11 +39,14 @@ object UserRepository {
     fun getMyContact(onComplete: (ArrayList<Contact>) -> Unit) {
         FirebaseAuth.getInstance().currentUser?.apply {
             if (this.email != null) {
-                db.collection("users").document("contacts").collection("contacts")
+                db.collection("users").document(this.email!!).collection("contacts")
                     .get()
                     .addOnSuccessListener { documents ->
-                        val contacts = ArrayList<Contact>()
-                        if (documents != null)
+                        if (documents.isEmpty) {
+                            Log.d(TAG, "onSuccess: LIST EMPTY")
+                            onComplete(ArrayList())
+                        } else {
+                            val contacts = ArrayList<Contact>()
                             for (doc in documents) {
                                 contacts.add(
                                     Contact(
@@ -51,16 +54,15 @@ object UserRepository {
                                         email = doc.data.getValue("email") as String
                                     )
                                 )
-                                onComplete(contacts)
                             }
-                        else
-                            onComplete(ArrayList<Contact>())
+                            onComplete(contacts)
+                        }
                     }
                     .addOnFailureListener {
                         Log.d(TAG, "Falha")
                         onComplete(ArrayList<Contact>())
                     }
-            }else{
+            } else {
                 onComplete(ArrayList())
             }
         }
