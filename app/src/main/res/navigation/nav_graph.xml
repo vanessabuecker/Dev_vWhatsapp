@@ -8,7 +8,11 @@
         android:id="@+id/mainFragment"
         tools:layout="@layout/fragment_main"
         android:name="com.vbuecker.dev_venture_whatsapp.ui.main.MainFragment"
-        android:label="MainFragment" />
+        android:label="MainFragment" >
+        <action
+            android:id="@+id/action_mainFragment_to_contactsFragment"
+            app:destination="@id/contactsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.vbuecker.dev_venture_whatsapp.ui.login.LoginFragment"
@@ -17,5 +21,10 @@
             android:id="@+id/action_loginFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/contactsFragment"
+        android:name="com.vbuecker.dev_venture_whatsapp.ui.contacts.ContactsFragment"
+        android:label="fragment_contact_list"
+        tools:layout="@layout/fragment_contact_list" />
 
 </navigation>
