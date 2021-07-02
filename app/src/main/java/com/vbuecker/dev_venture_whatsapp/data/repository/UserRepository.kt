@@ -38,76 +38,20 @@ object UserRepository {
 
     fun getMyContact(onComplete: (ArrayList<Contact>) -> Unit) {
         FirebaseAuth.getInstance().currentUser?.apply {
-            if (this.email != null) {
+            if (this.email != null)
                 db.collection("users").document(this.email!!).collection("contacts")
-                    .get()
-                    .addOnSuccessListener { documents ->
-                        if (documents.isEmpty) {
-                            Log.d(TAG, "onSuccess: LIST EMPTY")
-                            onComplete(ArrayList())
+                    .addSnapshotListener { data, error ->
+                        if (error != null) {
+                            Log.e(TAG, error.localizedMessage)
                         } else {
-                            val contacts = ArrayList<Contact>()
-                            for (doc in documents) {
-                                contacts.add(
-                                    Contact(
-                                        name = doc.data.getValue("name") as String,
-                                        email = doc.data.getValue("email") as String
-                                    )
-                                )
+                            if (data != null) {
+                                val contacts = data.toObjects(Contact::class.java)
+                                onComplete(contacts as ArrayList<Contact>)
                             }
-                            onComplete(contacts)
                         }
                     }
-                    .addOnFailureListener {
-                        Log.d(TAG, "Falha")
-                        onComplete(ArrayList<Contact>())
-                    }
-            } else {
+            else
                 onComplete(ArrayList())
-            }
         }
     }
-
-//    fun getMyContact(onComplete: (ArrayList<Contact>) -> Unit) {
-//        val current = FirebaseAuth.getInstance().currentUser?.apply {
-//            if (this.email != null) {
-//                try {
-//
-//                    val docRef = db.collection("users")
-//                        .document(this.email!!)
-//                        .collection("contacts")
-//                    docRef.get()
-//                        .addOnSuccessListener { documents ->
-//                            if (documents != null) {
-//                                val contacts = ArrayList<Contact>()
-//                                for (document in documents) {
-//                                    contacts.add(
-//                                        Contact(
-//                                            name = document.data.getValue("name") as String,
-//                                            email = document.data.getValue("email") as String
-//                                        )
-//                                    )
-//                                }
-//                                onComplete(contacts)
-//                            } else {
-//                                Log.d(TAG, "No contacts found")
-//                                onComplete(ArrayList<Contact>())
-//                            }
-//                        }
-//                        .addOnFailureListener { exception ->
-//                            Log.d(TAG, "get contacts failed with ", exception)
-//                            onComplete(ArrayList<Contact>())
-//                        }
-//                } catch (e: Exception) {
-//                    e.printStackTrace()
-//                }
-//
-//            } else {
-//                Log.e(TAG, "Current user has no email")
-//                onComplete(ArrayList<Contact>())
-//            }
-//        }
-//        Log.e(TAG, "Current user not found")
-//        onComplete(ArrayList<Contact>())
-//    }
 }
