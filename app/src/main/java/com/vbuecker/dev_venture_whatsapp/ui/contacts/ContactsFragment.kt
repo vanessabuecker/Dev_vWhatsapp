@@ -8,11 +8,11 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import com.vbuecker.dev_venture_whatsapp.data.model.Contact
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import com.vbuecker.dev_venture_whatsapp.databinding.FragmentContactListBinding
+import com.vbuecker.dev_venture_whatsapp.databinding.FragmentContactsBinding
 
 class ContactsFragment : Fragment() {
 
-    private var _binding: FragmentContactListBinding? = null
+    private var _binding: FragmentContactsBinding? = null
     private val binding
         get() = _binding!!
 
@@ -23,7 +23,7 @@ class ContactsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentContactListBinding.inflate(inflater, container, false)
+        _binding = FragmentContactsBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -43,8 +43,6 @@ class ContactsFragment : Fragment() {
         viewModel.contactsList.observe(viewLifecycleOwner, Observer { contactList ->
             mAdapter.setDataset(contactList)
         })
-        val array: ArrayList<Contact> = arrayListOf(Contact("teste", "teste@gmail.com"))
-        mAdapter.setDataset(array)
     }
 
 }

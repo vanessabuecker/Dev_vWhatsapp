@@ -30,6 +30,6 @@
         android:id="@+id/contactsFragment"
         android:name="com.vbuecker.dev_venture_whatsapp.ui.contacts.ContactsFragment"
         android:label="fragment_contact_list"
-        tools:layout="@layout/fragment_contact_list" />
+        tools:layout="@layout/fragment_contacts" />
 
 </navigation>
