@@ -44,8 +44,7 @@ class LoginFragment : Fragment() {
         viewModel.isUserAuthenticatedLiveData?.observe(viewLifecycleOwner, Observer {
             if (it) {
                 onSuccess("Logado")
-            } else
-                onFail("Não foi possível adicionar o usuário")
+            }
         })
     }
 
