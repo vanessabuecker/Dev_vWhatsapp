@@ -1,11 +1,12 @@
 package com.vbuecker.dev_venture_whatsapp.ui.main
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.NavigationUI
+import com.firebase.ui.auth.AuthUI
 import com.google.android.material.tabs.TabLayoutMediator
 import com.vbuecker.dev_venture_whatsapp.R
 import com.vbuecker.dev_venture_whatsapp.adapters.ViewPagerAdapter
@@ -22,6 +23,7 @@ class MainFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentMainBinding.inflate(inflater, container, false)
+        setHasOptionsMenu(true)
         return binding.root
     }
 
@@ -31,6 +33,25 @@ class MainFragment : Fragment() {
         binding.fabContacts.setOnClickListener {
             findNavController().navigate(R.id.action_mainFragment_to_contactsFragment)
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater?.inflate(R.menu.menu_logout, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.action_logout) {
+            AuthUI.getInstance().signOut(requireContext()).addOnCompleteListener{
+                Toast.makeText(requireContext(), "Usuário deslogado", Toast.LENGTH_SHORT).show()
+                findNavController().navigate(R.id.action_mainFragment_to_loginFragment)
+            }
+        }
+            return NavigationUI.onNavDestinationSelected(
+                item,
+                findNavController()
+            )
+                    || super.onOptionsItemSelected(item)
     }
 
     private fun initViewPager() {
