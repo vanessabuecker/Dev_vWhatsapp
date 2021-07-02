@@ -5,7 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.tabs.TabLayoutMediator
+import com.vbuecker.dev_venture_whatsapp.R
 import com.vbuecker.dev_venture_whatsapp.adapters.ViewPagerAdapter
 import com.vbuecker.dev_venture_whatsapp.databinding.FragmentMainBinding
 
@@ -26,6 +28,9 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initViewPager()
+        binding.fabContacts.setOnClickListener {
+            findNavController().navigate(R.id.action_mainFragment_to_contactsFragment)
+        }
     }
 
     private fun initViewPager() {
