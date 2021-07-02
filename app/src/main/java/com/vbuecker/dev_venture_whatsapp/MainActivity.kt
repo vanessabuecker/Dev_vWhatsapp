@@ -10,6 +10,7 @@ import com.firebase.ui.auth.AuthUI
 import com.google.android.material.tabs.TabLayoutMediator
 import com.vbuecker.dev_venture_whatsapp.adapters.ViewPagerAdapter
 import com.vbuecker.dev_venture_whatsapp.databinding.ActivityMainBinding
+import com.vbuecker.dev_venture_whatsapp.fragments.ContactsFragment
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -21,7 +22,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setSupportActionBar(binding.toolbar)
+        //setSupportActionBar(binding.toolbar)
+        binding.fabContacts.setOnClickListener {
+            val intent = Intent(this, ContactsFragment::class.java)
+            startActivity(intent)
+        }
 
         title = "Whatsapp - Group 1"
 

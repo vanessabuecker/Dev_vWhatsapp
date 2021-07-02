@@ -44,17 +44,6 @@
                 android:textSize="18sp"
                 android:textStyle="bold"
                 tools:text="Vanessa B."/>
-
-            <TextView
-                android:id="@+id/timeTv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:ellipsize="end"
-                android:textColor="@color/p_dark"
-                android:textSize="14sp"
-                android:visibility="visible"
-                tools:text="30/06/21?"/>
         </LinearLayout>
 
         <LinearLayout
@@ -70,22 +59,6 @@
                 android:lines="1"
                 android:textSize="14sp"
                 tools:text="Hey. How are you?"/>
-
-            <TextView
-                android:id="@+id/countTv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:ellipsize="end"
-                android:textColor="@color/p_dark"
-                android:textSize="14sp"
-                android:paddingStart="8dp"
-                android:paddingEnd="8dp"
-                android:paddingBottom="2dp"
-                android:paddingTop="2dp"/>
-
-
-
         </LinearLayout>
     </LinearLayout>
 
