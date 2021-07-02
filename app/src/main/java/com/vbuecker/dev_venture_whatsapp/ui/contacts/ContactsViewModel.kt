@@ -1,4 +1,4 @@
-package com.vbuecker.dev_venture_whatsapp.fragments
+package com.vbuecker.dev_venture_whatsapp.ui.contacts
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
