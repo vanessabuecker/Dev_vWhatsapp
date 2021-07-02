@@ -7,6 +7,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.vbuecker.dev_venture_whatsapp.R
 import com.vbuecker.dev_venture_whatsapp.data.model.Contact
+import de.hdodenhof.circleimageview.CircleImageView
 
 class ContactsAdapter : RecyclerView.Adapter<ContactsAdapter.MyViewHolder>() {
 
@@ -15,11 +16,11 @@ class ContactsAdapter : RecyclerView.Adapter<ContactsAdapter.MyViewHolder>() {
     inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val contactName: TextView = itemView.findViewById(R.id.contact_name)
         private val contactDetail: TextView = itemView.findViewById(R.id.contact_detail)
+        private val contactImage : CircleImageView = itemView.findViewById(R.id.contact_image)
 
         fun bind(contact: Contact) {
             contactName.text = contact.name
             contactDetail.text = contact.email
-//            contactImage = TODO(Setar imagem)
         }
     }
 
