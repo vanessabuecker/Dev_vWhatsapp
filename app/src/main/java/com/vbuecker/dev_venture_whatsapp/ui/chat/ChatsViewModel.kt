@@ -18,6 +18,10 @@ class ChatsViewModel(val chatRepository: ChatRepository, val userRepository: Use
         }
     }
 
+    fun addMessageToChat(chatId: String, myEmail: String, msg: String) {
+        chatRepository.addMessageToChat(chatId, myEmail, msg)
+    }
+
     val messageList: LiveData<ArrayList<Message>>
         get() = _messageList
 }
