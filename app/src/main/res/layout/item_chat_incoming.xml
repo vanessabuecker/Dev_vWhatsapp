@@ -14,7 +14,10 @@
         android:ems="10"
         android:focusable="false"
         android:inputType="textMultiLine"
-        android:padding="5dp"
+        android:paddingStart="25dp"
+        android:paddingEnd="5dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

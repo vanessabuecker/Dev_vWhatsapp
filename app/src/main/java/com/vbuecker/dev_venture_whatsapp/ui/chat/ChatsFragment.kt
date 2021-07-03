@@ -55,6 +55,7 @@ class ChatsFragment : Fragment() {
             val msg = binding.tvMessage.text.toString()
             viewModel.addMessageToChat(chatId!!, myEmail, msg)
             binding.rvChat.scrollToPosition(mAdapter.itemCount - 1)
+            binding.tvMessage.text.clear()
         }
     }
 
