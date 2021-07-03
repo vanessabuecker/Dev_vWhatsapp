@@ -28,7 +28,7 @@ class ChatsAdapter(private val userEmail: String) : RecyclerView.Adapter<ChatsAd
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChatsAdapter.ViewHolder {
-        val view = if (viewType == 1) {
+        val view = if (viewType == 0) {
             LayoutInflater.from(parent.context).inflate(R.layout.item_chat_incoming, parent, false)
         } else {
             LayoutInflater.from(parent.context).inflate(R.layout.item_chat_outgoing, parent, false)
