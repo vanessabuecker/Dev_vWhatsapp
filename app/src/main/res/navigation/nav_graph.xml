@@ -21,7 +21,7 @@
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.vbuecker.dev_venture_whatsapp.ui.login.LoginFragment"
-        android:label="LoginFragment">
+        android:label="Login">
         <action
             android:id="@+id/action_loginFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
@@ -30,7 +30,7 @@
     <fragment
         android:id="@+id/contactsFragment"
         android:name="com.vbuecker.dev_venture_whatsapp.ui.contacts.ContactsFragment"
-        android:label="fragment_contact_list"
+        android:label="Contatos"
         tools:layout="@layout/fragment_contacts" >
         <action
             android:id="@+id/action_contactsFragment_to_chatsFragment"
@@ -40,7 +40,7 @@
     <fragment
         android:id="@+id/chatsFragment"
         android:name="com.vbuecker.dev_venture_whatsapp.ui.chat.ChatsFragment"
-        android:label="fragment_chats"
+        android:label="Meu chat"
         tools:layout="@layout/fragment_chats" />
 
 </navigation>

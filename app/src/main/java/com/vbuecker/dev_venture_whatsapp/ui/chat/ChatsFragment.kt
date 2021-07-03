@@ -17,7 +17,6 @@ class ChatsFragment : Fragment() {
     private val binding
         get() = _binding!!
     private val viewModel: ChatsViewModel by viewModel()
-    private val loginViewModel: LoginViewModel by viewModel()
     private lateinit var mAdapter: ChatsAdapter
     private var chatId: String? = null
 
@@ -47,7 +46,7 @@ class ChatsFragment : Fragment() {
     }
 
     private fun configureSendMessage() {
-        val myEmail = loginViewModel.myEmail
+        val myEmail = viewModel.myEmail
         binding.btnSend.setOnClickListener {
             val msg = binding.tvMessage.text.toString()
             ChatRepository.addMessageToChat(chatId!!, myEmail, msg)

@@ -15,6 +15,6 @@ object AppModule {
         factory { ChatRepository }
         viewModel { LoginViewModel(get()) }
         viewModel { ContactsViewModel(get()) }
-        viewModel { ChatsViewModel(get()) }
+        viewModel { ChatsViewModel(get(), get()) }
     }
 }
