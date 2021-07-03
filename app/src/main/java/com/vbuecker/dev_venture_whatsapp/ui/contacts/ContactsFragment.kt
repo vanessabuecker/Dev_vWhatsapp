@@ -1,6 +1,5 @@
 package com.vbuecker.dev_venture_whatsapp.ui.contacts
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -13,7 +12,6 @@ import androidx.navigation.fragment.findNavController
 import com.vbuecker.dev_venture_whatsapp.R
 import com.vbuecker.dev_venture_whatsapp.data.model.Contact
 import com.vbuecker.dev_venture_whatsapp.data.repository.ChatRepository
-import com.vbuecker.dev_venture_whatsapp.data.repository.UserRepository
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import com.vbuecker.dev_venture_whatsapp.databinding.FragmentContactsBinding
 

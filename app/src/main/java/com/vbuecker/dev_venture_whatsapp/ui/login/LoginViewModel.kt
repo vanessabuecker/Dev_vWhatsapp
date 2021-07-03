@@ -5,6 +5,8 @@ import androidx.lifecycle.ViewModel
 import com.vbuecker.dev_venture_whatsapp.data.repository.UserRepository
 
 class LoginViewModel(val userRepository: UserRepository) : ViewModel() {
+    val myEmail = userRepository.myEmail()
+
     var isUserAuthenticatedLiveData: LiveData<Boolean>? = null
 
     fun checkIfAuthenticated() {

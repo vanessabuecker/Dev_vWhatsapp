@@ -1,8 +1,10 @@
 package com.vbuecker.dev_venture_whatsapp.data.repository
 
 import android.util.Log
+import androidx.lifecycle.MutableLiveData
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 import com.vbuecker.dev_venture_whatsapp.data.model.Message
 import java.util.*
@@ -15,30 +17,50 @@ object ChatRepository {
     private val db by lazy { Firebase.firestore }
     private val currentUserEmail by lazy { UserRepository.myEmail() }
 
-    fun getMessages(
-        chatId: String,
-        onComplete: (ArrayList<Message>) -> Unit
-    ) {
-        FirebaseAuth.getInstance().currentUser?.apply {
-            db.collection("chats")
-                .document(chatId)
-                .collection("messages").addSnapshotListener { snapshot, e ->
-                    if (e != null) {
-                        onComplete(ArrayList())
-                        Log.e(TAG, e.localizedMessage)
-                        return@addSnapshotListener
-                    }
-
-                    var messages = ArrayList<Message>()
-                    if (snapshot != null) {
-                        messages = snapshot.toObjects(Message::class.java) as ArrayList<Message>
-                        onComplete(messages)
-                    } else {
-                        Log.d(TAG, "snapshot is null")
-                    }
+    fun getMessages(chatId: String, onComplete: (ArrayList<Message>) -> Unit) {
+        db.collection("chats")
+            .document(chatId)
+            .collection("messages").addSnapshotListener { snapshot, e ->
+                if (e != null) {
+                    onComplete(ArrayList<Message>())
+                    Log.e(TAG, e.localizedMessage)
+                    return@addSnapshotListener
                 }
-        }
+
+                var messages = ArrayList<Message>()
+                if (snapshot != null) {
+                    messages = snapshot.toObjects(Message::class.java) as ArrayList<Message>
+                    messages.sortBy { it.time }
+                    onComplete(messages)
+                } else {
+                    Log.d(TAG, "snapshot is null")
+                }
+            }
     }
+//    fun getMessages(
+//        chatId: String,
+//        onComplete: (ArrayList<Message>) -> Unit
+//    ) {
+//        FirebaseAuth.getInstance().currentUser?.apply {
+//            db.collection("chats")
+//                .document(chatId)
+//                .collection("messages").addSnapshotListener { snapshot, e ->
+//                    if (e != null) {
+//                        onComplete(ArrayList())
+//                        Log.e(TAG, e.localizedMessage)
+//                        return@addSnapshotListener
+//                    }
+//
+//                    var messages = ArrayList<Message>()
+//                    if (snapshot != null) {
+//                        messages = snapshot.toObjects(Message::class.java) as ArrayList<Message>
+//                        onComplete(messages)
+//                    } else {
+//                        Log.d(TAG, "snapshot is null")
+//                    }
+//                }
+//        }
+//    }
 
     fun getChatWith(contactEmail: String, onComplete: (chatId: String, e: String?) -> Unit) {
         val chat = createChatId(currentUserEmail, contactEmail)
