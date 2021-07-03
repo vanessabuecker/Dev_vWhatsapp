@@ -26,10 +26,21 @@
             android:id="@+id/action_loginFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/contactsFragment"
         android:name="com.vbuecker.dev_venture_whatsapp.ui.contacts.ContactsFragment"
         android:label="fragment_contact_list"
-        tools:layout="@layout/fragment_contacts" />
+        tools:layout="@layout/fragment_contacts" >
+        <action
+            android:id="@+id/action_contactsFragment_to_chatsFragment"
+            app:destination="@id/chatsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/chatsFragment"
+        android:name="com.vbuecker.dev_venture_whatsapp.ui.chat.ChatsFragment"
+        android:label="fragment_chats"
+        tools:layout="@layout/fragment_chats" />
 
 </navigation>

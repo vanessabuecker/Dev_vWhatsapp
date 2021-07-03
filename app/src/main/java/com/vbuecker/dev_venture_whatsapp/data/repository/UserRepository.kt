@@ -14,6 +14,10 @@ object UserRepository {
     private val firebaseAuth = FirebaseAuth.getInstance()
     private val db by lazy { Firebase.firestore }
 
+    fun myEmail(): String {
+        return firebaseAuth.currentUser?.email ?: ""
+    }
+
     fun checkIfUserIsAuthenticated(): MutableLiveData<Boolean> {
         val isUserAuthenticated = MutableLiveData<Boolean>()
         val firebaseUser = firebaseAuth.currentUser

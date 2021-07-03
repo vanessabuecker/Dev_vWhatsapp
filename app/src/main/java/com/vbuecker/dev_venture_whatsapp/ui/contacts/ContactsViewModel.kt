@@ -1,5 +1,6 @@
 package com.vbuecker.dev_venture_whatsapp.ui.contacts
 
+import android.content.Intent
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -16,4 +17,5 @@ class ContactsViewModel(val userRepository: UserRepository) : ViewModel() {
 
     val contactsList: LiveData<ArrayList<Contact>>
         get() = _contactsList
+
 }
