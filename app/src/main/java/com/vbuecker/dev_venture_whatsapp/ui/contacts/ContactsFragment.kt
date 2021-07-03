@@ -52,7 +52,7 @@ class ContactsFragment : Fragment() {
     }
 
     private fun onContactSelected(contact: Contact) {
-        ChatRepository.getChatWith(contact.email) { chatId, e ->
+        viewModel.getChatWith(contact.email) {chatId, e ->
             if (e != null)
                 Toast.makeText(context, e, Toast.LENGTH_LONG).show()
             else
