@@ -17,6 +17,8 @@ class ChatsFragment : Fragment() {
     private lateinit var mAdapter: ChatsAdapter
     private var chatId: String? = null
 
+    private lateinit var myEmail: String
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -28,6 +30,7 @@ class ChatsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        myEmail = viewModel.myEmail
         initRecyclerView()
         configureSendMessage()
         subscribeObservers()
@@ -40,14 +43,13 @@ class ChatsFragment : Fragment() {
     }
 
     private fun initRecyclerView() {
-        mAdapter = ChatsAdapter()
+        mAdapter = ChatsAdapter(myEmail)
         binding.rvChat.apply {
             adapter = mAdapter
         }
     }
 
     private fun configureSendMessage() {
-        val myEmail = viewModel.myEmail
         binding.btnSend.setOnClickListener {
             val msg = binding.tvMessage.text.toString()
             viewModel.addMessageToChat(chatId!!, myEmail, msg)

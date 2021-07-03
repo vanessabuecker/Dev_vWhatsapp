@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.vbuecker.dev_venture_whatsapp.R
 import com.vbuecker.dev_venture_whatsapp.data.model.Message
 
-class ChatsAdapter : RecyclerView.Adapter<ChatsAdapter.ViewHolder>() {
+class ChatsAdapter(private val userEmail: String) : RecyclerView.Adapter<ChatsAdapter.ViewHolder>() {
 
     var messageList = arrayListOf<Message>()
 
@@ -23,8 +23,16 @@ class ChatsAdapter : RecyclerView.Adapter<ChatsAdapter.ViewHolder>() {
         notifyDataSetChanged()
     }
 
+    override fun getItemViewType(position: Int): Int {
+        return if (messageList[position].from == userEmail) 1 else 0
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChatsAdapter.ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_chat_outgoing, parent, false)
+        val view = if (viewType == 1) {
+            LayoutInflater.from(parent.context).inflate(R.layout.item_chat_incoming, parent, false)
+        } else {
+            LayoutInflater.from(parent.context).inflate(R.layout.item_chat_outgoing, parent, false)
+        }
         return ViewHolder(view)
     }
 
