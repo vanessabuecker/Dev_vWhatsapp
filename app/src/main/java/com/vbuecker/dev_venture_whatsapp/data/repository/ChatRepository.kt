@@ -32,6 +32,7 @@ object ChatRepository {
                     var messages = ArrayList<Message>()
                     if (snapshot != null) {
                         messages = snapshot.toObjects(Message::class.java) as ArrayList<Message>
+                        messages.sortBy { it.time }
                         onComplete(messages)
                     } else {
                         Log.d(TAG, "snapshot is null")
