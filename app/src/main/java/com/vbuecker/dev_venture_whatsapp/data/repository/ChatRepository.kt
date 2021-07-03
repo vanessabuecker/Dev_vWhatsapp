@@ -56,7 +56,7 @@ object ChatRepository {
 
     fun createChatId(email: String, email2: String): String {
         val chatId =
-            if (email > email2) "${email}-${email2}" else "${email}-${email2}"
+            if (email > email2) "${email}-${email2}" else "${email2}-${email}"
         return chatId
     }
 
